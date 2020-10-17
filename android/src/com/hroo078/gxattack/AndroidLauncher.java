@@ -21,7 +21,7 @@ public class AndroidLauncher extends AndroidApplication {
 
 		AndroidLauncher.context = getApplicationContext();
 		// create new database
-		DatabaseHelper.getInstance(AndroidLauncher.context);
+		DatabaseHelper.getInstance(AndroidLauncher.context).getWritableDatabase();
 
 		initialize(new GallaxyAttackGame(), config);
 	}

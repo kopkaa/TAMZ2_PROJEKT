@@ -12,7 +12,6 @@ public class GallaxyAttackGame extends Game {
 
 	@Override
 	public void create() {
-		DatabaseHelper.getInstance(AndroidLauncher.getAppContext());
 		gameScreen = new GameScreen();
 		setScreen(gameScreen);
 	}
