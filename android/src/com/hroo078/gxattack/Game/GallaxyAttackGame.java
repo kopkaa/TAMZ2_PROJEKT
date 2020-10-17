@@ -1,14 +1,18 @@
 package com.hroo078.gxattack.Game;
 
 import com.badlogic.gdx.Game;
+import com.hroo078.gxattack.AndroidLauncher;
+import com.hroo078.gxattack.Database.DatabaseHelper;
 import com.hroo078.gxattack.Game.Screens.GameScreen;
 
 
 public class GallaxyAttackGame extends Game {
 
 	GameScreen gameScreen;
+
 	@Override
 	public void create() {
+		DatabaseHelper.getInstance(AndroidLauncher.getAppContext());
 		gameScreen = new GameScreen();
 		setScreen(gameScreen);
 	}
