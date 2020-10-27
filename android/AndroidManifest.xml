@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hroo078.gxattack" >
+    package="com.hroo078.gxattack">
 
     <application
         android:allowBackup="true"
+        android:appCategory="game"
         android:icon="@drawable/ic_launcher"
         android:isGame="true"
-        android:appCategory="game"
         android:label="@string/app_name"
-        android:theme="@style/GdxTheme" >
+        android:theme="@style/GdxTheme">
+        <activity android:name=".Game.Screens.MenuScreen"></activity>
         <activity
-            android:name="com.hroo078.gxattack.AndroidLauncher"
-            android:label="@string/app_name" 
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout">
+            android:name=".AndroidLauncher"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
