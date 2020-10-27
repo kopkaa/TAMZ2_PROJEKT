@@ -28,8 +28,7 @@ public class MenuScreen implements Screen {
 
     // Buttons
     private ArrayList<TextButton> menuButtons = new ArrayList<>();
-    private  float BUTTON_WIDTH = 300f;
-    private  float BUTTON_HEIGHT = 65;
+    private  float BUTTON_HEIGHT = 100f;
 
     public MenuScreen(Game game) {
         this.game = game;
@@ -40,7 +39,7 @@ public class MenuScreen implements Screen {
     }
 
     public void initBackground() {
-        background = new Texture("Space_Stars2.png");
+        background = new Texture("space_black.png");
         backgroundOffset = 0;
         batch = new SpriteBatch();
     }
@@ -56,8 +55,8 @@ public class MenuScreen implements Screen {
         menuButtons.add(new TextButton("About", GallaxyAttackGame.gameSkin, "default"));
 
         for(int i = 0; i <= menuButtons.size()-1; i++) {
+            menuButtons.get(i).getLabel().setFontScale(1.75f,1.75f);
             Container<TextButton> container = new Container<TextButton>(menuButtons.get(i));
-            container.width(BUTTON_WIDTH);
             container.height(BUTTON_HEIGHT);
             container.padBottom(20);
 
