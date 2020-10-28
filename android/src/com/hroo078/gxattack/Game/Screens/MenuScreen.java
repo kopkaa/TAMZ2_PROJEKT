@@ -23,7 +23,9 @@ public class MenuScreen implements Screen {
 
     // Background
     private Texture background;
+    private Texture logo;
     private SpriteBatch batch;
+    private SpriteBatch logoBatch;
     private int backgroundOffset;
 
     // Buttons
@@ -42,30 +44,34 @@ public class MenuScreen implements Screen {
         background = new Texture("space_black.png");
         backgroundOffset = 0;
         batch = new SpriteBatch();
+
+        logo = new Texture("logo.png");
+        logoBatch = new SpriteBatch();
     }
 
     private void initButtons() {
 
         VerticalGroup group = new VerticalGroup();
         int groupHeight = 0;
+        int pTop;
 
-        menuButtons.add(new TextButton("Play game", GallaxyAttackGame.gameSkin, "default"));
-        menuButtons.add(new TextButton("High Score", GallaxyAttackGame.gameSkin, "default"));
-        menuButtons.add(new TextButton("Options", GallaxyAttackGame.gameSkin, "default"));
-        menuButtons.add(new TextButton("About", GallaxyAttackGame.gameSkin, "default"));
+        menuButtons.add(new TextButton("PLAY GAME", GallaxyAttackGame.gameSkin, "default"));
+        menuButtons.add(new TextButton("SETTINGS", GallaxyAttackGame.gameSkin, "default"));
+        menuButtons.add(new TextButton("HIGH SCORE", GallaxyAttackGame.gameSkin, "default"));
+        menuButtons.add(new TextButton("ABOUT", GallaxyAttackGame.gameSkin, "default"));
 
         for(int i = 0; i <= menuButtons.size()-1; i++) {
             menuButtons.get(i).getLabel().setFontScale(1.75f,1.75f);
             Container<TextButton> container = new Container<TextButton>(menuButtons.get(i));
-            container.height(BUTTON_HEIGHT);
-            container.padBottom(20);
+
+            pTop = i == 0 ? 120 : 80;
+            container.padTop(pTop);
 
             groupHeight += BUTTON_HEIGHT + 20;
             group.addActor(container);
         }
 
-        System.out.println("GROUP HEIGHT" + groupHeight);
-        group.setPosition(Gdx.graphics.getWidth() /2 - (group.getWidth() / 2),Gdx.graphics.getHeight()/2  + groupHeight / 2);
+        group.setPosition(Gdx.graphics.getWidth() /2 - group.getWidth() / 2,Gdx.graphics.getHeight()/2  + groupHeight / 2);
 
         stage.addActor(group);
     }
@@ -88,6 +94,11 @@ public class MenuScreen implements Screen {
         batch.draw(background,0,-backgroundOffset,Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.draw(background,0,-backgroundOffset+Gdx.graphics.getHeight(),Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.end();
+
+        int posY = Gdx.graphics.getHeight() - logo.getHeight() - 50;
+        logoBatch.begin();
+        logoBatch.draw(logo, Gdx.graphics.getWidth() /2 - logo.getWidth() / 2, posY );
+        logoBatch.end();
         stage.draw();
     }
 

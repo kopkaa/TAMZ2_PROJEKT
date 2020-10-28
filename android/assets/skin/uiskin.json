@@ -3,7 +3,7 @@ com.badlogic.gdx.graphics.Color: {
 	green: { a: 1.0, b: 0.09, g: 1, r: 0.14 },
 	light_grey: { r: 0.8, g: 0.8, b: 0.8, a: 1 },
 	white: { r: 1, g: 1, b: 1, a: 1 },
-	red: { r: 1, a: 1 },
+	red: { r: 0.68, g: 0.16, b: 0.1572, a: 1 },
 	light_blue: { r: 0.64705884, g: 0.64705884, b: 1, a: 1 },
 	grey: { r: 0.7, g: 0.7, b: 0.7, a: 1 },
 	dark_grey: { r: 0.4, g: 0.4, b: 0.4, a: 1 },
@@ -26,8 +26,8 @@ com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
 com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 	default: {
 		font: commodore-64,
-		fontColor: green,
-		downFontColor: { a: 1, b: 0.90588236, g: 0.25882354, r: 0.25882354 },
+		fontColor: red,
+		downFontColor: { a: 1, b: 0.1552, g: 0.8552, r: 0.6897 },
 		disabledFontColor: { a: 1, b: 0.8, g: 0.8, r: 0.8 },
 	},
 	toggle: {
