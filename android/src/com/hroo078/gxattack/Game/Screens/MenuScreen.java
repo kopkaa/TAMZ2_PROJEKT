@@ -44,7 +44,7 @@ public class MenuScreen extends AbstractScreen {
     }
 
     public void initBackground() {
-        background = new Texture("space_x.png");
+        background = new Texture("Space_Stars2.png");
         backgroundOffset = 0;
         batch = new SpriteBatch();
 
@@ -64,7 +64,7 @@ public class MenuScreen extends AbstractScreen {
         menuButtons.add(new TextButton("ABOUT", GallaxyAttackGame.gameSkin, "default"));
 
         for(int i = 0; i <= menuButtons.size()-1; i++) {
-            menuButtons.get(i).getLabel().setFontScale(1.75f,1.75f);
+            menuButtons.get(i).getLabel().setFontScale(2.15f,2.15f);
             Container<TextButton> container = new Container<TextButton>(menuButtons.get(i));
 
             pTop = i == 0 ? 120 : 80;
@@ -80,14 +80,16 @@ public class MenuScreen extends AbstractScreen {
     }
 
     public void drawBackground() {
+        batch.setProjectionMatrix(getCamera().combined);
         batch.begin();
 
-        backgroundOffset++;
+        backgroundOffset += 3;
         if(backgroundOffset >= Gdx.graphics.getHeight()) {
             backgroundOffset = 0;
         }
-        batch.draw(background,0,-backgroundOffset,Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        batch.draw(background,0,-backgroundOffset+Gdx.graphics.getHeight(),Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        batch.draw(background,0,-backgroundOffset,Gdx.graphics.getHeight(), Gdx.graphics.getHeight());
+        batch.draw(background,0,-backgroundOffset+Gdx.graphics.getHeight(),Gdx.graphics.getHeight(),Gdx.graphics.getHeight());
         batch.end();
     }
 
@@ -115,7 +117,7 @@ public class MenuScreen extends AbstractScreen {
 
     @Override
     public void resize(int width, int height) {
-
+        getViewport().update(width,height,true);
     }
 
     @Override

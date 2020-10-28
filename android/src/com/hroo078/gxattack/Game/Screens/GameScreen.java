@@ -1,9 +1,7 @@
 package com.hroo078.gxattack.Game.Screens;
 
 import android.content.res.Resources;
-import android.util.Log;
 
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
