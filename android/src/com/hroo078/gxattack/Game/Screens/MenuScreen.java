@@ -16,9 +16,8 @@ import com.hroo078.gxattack.Game.GallaxyAttackGame;
 
 import java.util.ArrayList;
 
-public class MenuScreen implements Screen {
+public class MenuScreen extends AbstractScreen {
 
-    private Game game;
     private Stage stage;
 
     // Background
@@ -32,16 +31,20 @@ public class MenuScreen implements Screen {
     private ArrayList<TextButton> menuButtons = new ArrayList<>();
     private  float BUTTON_HEIGHT = 100f;
 
-    public MenuScreen(Game game) {
-        this.game = game;
-        stage = new Stage();
-        initBackground();
-        initButtons();
+    public MenuScreen() {
+        buildStage();
         Gdx.input.setInputProcessor(stage);
     }
 
+    @Override
+    public void buildStage() {
+        stage = new Stage();
+        initBackground();
+        initButtons();
+    }
+
     public void initBackground() {
-        background = new Texture("space_black.png");
+        background = new Texture("space_x.png");
         backgroundOffset = 0;
         batch = new SpriteBatch();
 
@@ -76,15 +79,7 @@ public class MenuScreen implements Screen {
         stage.addActor(group);
     }
 
-    @Override
-    public void show() {
-
-    }
-
-    @Override
-    public void render(float delta) {
-        Gdx.gl.glClearColor(1, 1, 1, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    public void drawBackground() {
         batch.begin();
 
         backgroundOffset++;
@@ -94,13 +89,29 @@ public class MenuScreen implements Screen {
         batch.draw(background,0,-backgroundOffset,Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.draw(background,0,-backgroundOffset+Gdx.graphics.getHeight(),Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.end();
+    }
 
+    public void drawLogo() {
         int posY = Gdx.graphics.getHeight() - logo.getHeight() - 50;
         logoBatch.begin();
         logoBatch.draw(logo, Gdx.graphics.getWidth() /2 - logo.getWidth() / 2, posY );
         logoBatch.end();
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        drawBackground();
+        drawLogo();
         stage.draw();
     }
+
 
     @Override
     public void resize(int width, int height) {

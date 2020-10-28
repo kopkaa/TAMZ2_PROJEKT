@@ -6,6 +6,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.hroo078.gxattack.Game.Screens.MenuScreen;
+import com.hroo078.gxattack.Game.Screens.ScreenEnum;
 
 
 public class GallaxyAttackGame extends Game {
@@ -15,7 +16,7 @@ public class GallaxyAttackGame extends Game {
 	@Override
 	public void create() {
 		gameSkin = new Skin(Gdx.files.internal("skin/uiskin.json"));
-		this.setScreen(new MenuScreen(this));
+		this.setScreen(ScreenEnum.MAIN_MENU.getScreen());
 	}
 
 

@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-public class GameScreen implements Screen {
+public class GameScreen extends AbstractScreen {
 
     private Camera camera;
     private Viewport viewport;
@@ -29,9 +29,14 @@ public class GameScreen implements Screen {
         camera = new OrthographicCamera();
         viewport = new StretchViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
 
-        background = new Texture("Space_Stars2.png");
+        background = new Texture("space_x.png");
         backgroundOffset = 0;
         batch = new SpriteBatch();
+    }
+
+    @Override
+    public void buildStage() {
+
     }
 
     @Override
