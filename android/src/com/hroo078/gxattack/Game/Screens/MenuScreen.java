@@ -29,7 +29,6 @@ public class MenuScreen extends AbstractScreen {
 
     // Buttons
     private ArrayList<TextButton> menuButtons = new ArrayList<>();
-    private  float BUTTON_HEIGHT = 100f;
 
     public MenuScreen() {
         buildStage();
@@ -70,7 +69,7 @@ public class MenuScreen extends AbstractScreen {
             pTop = i == 0 ? 120 : 80;
             container.padTop(pTop);
 
-            groupHeight += BUTTON_HEIGHT + 20;
+            groupHeight += 120;
             group.addActor(container);
         }
 
