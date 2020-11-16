@@ -25,7 +25,7 @@ public class ScreenManager {
     }
 
     public void showScreen(ScreenEnum screenEnum, Object... params) {
-        
+
         Screen currentScreen = game.getScreen();
 
         AbstractScreen newScreen = screenEnum.getScreen(params);

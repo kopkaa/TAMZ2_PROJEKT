@@ -43,7 +43,7 @@ public class MenuScreen extends AbstractScreen {
     }
 
     public void initBackground() {
-        background = new Texture("Space_Stars2.png");
+        background = new Texture("space_black.png");
         backgroundOffset = 0;
         batch = new SpriteBatch();
 
