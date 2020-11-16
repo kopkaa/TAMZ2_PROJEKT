@@ -2,39 +2,60 @@ package com.hroo078.gxattack.Game.Screens;
 
 import android.content.res.Resources;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.hroo078.gxattack.Game.Objects.Player;
 
 public class GameScreen extends AbstractScreen {
-
-    private Camera camera;
-    private Viewport viewport;
 
     // graphics
     private SpriteBatch batch;
     private Texture background;
-
     private int backgroundOffset;
 
-    private final int WORLD_WIDTH = Resources.getSystem().getDisplayMetrics().widthPixels;
-    private final int WORLD_HEIGHT = Resources.getSystem().getDisplayMetrics().heightPixels;
+    private Stage stage;
 
-     public GameScreen() {
-        camera = new OrthographicCamera();
-        viewport = new StretchViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
+    private Player player;
 
-        background = new Texture("space_x.png");
-        backgroundOffset = 0;
-        batch = new SpriteBatch();
+
+    public GameScreen() {
+        player = new Player(10,10);
+        player.setTexture("playerShip1_red.png");
+        buildStage();
     }
 
     @Override
     public void buildStage() {
+        stage = new Stage();
+        batch = new SpriteBatch();
+        initBackground();
+    }
 
+    public void initBackground() {
+        background = new Texture("space_black.png");
+        backgroundOffset = 0;
+        batch = new SpriteBatch();
+    }
+
+    public void drawBackground() {
+        batch.setProjectionMatrix(getCamera().combined);
+        batch.begin();
+
+        backgroundOffset += 3;
+        if(backgroundOffset >= Gdx.graphics.getHeight()) {
+            backgroundOffset = 0;
+        }
+
+        batch.draw(background,0,-backgroundOffset,Gdx.graphics.getHeight(), Gdx.graphics.getHeight());
+        batch.draw(background,0,-backgroundOffset+Gdx.graphics.getHeight(),Gdx.graphics.getHeight(),Gdx.graphics.getHeight());
+        batch.end();
     }
 
     @Override
@@ -44,25 +65,17 @@ public class GameScreen extends AbstractScreen {
 
     @Override
     public void render(float delta) {
-        movingBackground();
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        drawBackground();
+        player.draw(batch);
+        stage.draw();
     }
 
-    public void movingBackground() {
-        batch.begin();
-
-        backgroundOffset++;
-        if(backgroundOffset >= WORLD_HEIGHT) {
-            backgroundOffset = 0;
-        }
-        batch.draw(background,0,-backgroundOffset,WORLD_WIDTH, WORLD_HEIGHT);
-        batch.draw(background,0,-backgroundOffset+WORLD_HEIGHT,WORLD_WIDTH, WORLD_HEIGHT);
-        batch.end();
-    }
 
     @Override
     public void resize(int width, int height) {
-//         viewport.update(width, height, true);
-//         batch.setProjectionMatrix(camera.combined);
+        getViewport().update(width,height,true);
     }
 
     @Override

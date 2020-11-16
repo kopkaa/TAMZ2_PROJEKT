@@ -16,7 +16,7 @@ public class GallaxyAttackGame extends Game {
 	@Override
 	public void create() {
 		gameSkin = new Skin(Gdx.files.internal("skin/uiskin.json"));
-		this.setScreen(ScreenEnum.MAIN_MENU.getScreen());
+		this.setScreen(ScreenEnum.GAME.getScreen());
 	}
 
 
