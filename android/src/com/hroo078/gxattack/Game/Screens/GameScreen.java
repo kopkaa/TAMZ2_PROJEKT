@@ -29,8 +29,9 @@ public class GameScreen extends AbstractScreen {
 
 
     public GameScreen() {
-        player = new Player(40,40);
+        player = new Player(100,100);
         player.setTexture("playerShip1_red.png");
+        player.setSpeed(2.15f);
         buildStage();
     }
 
@@ -97,8 +98,8 @@ public class GameScreen extends AbstractScreen {
                 float xTouchDiff = touchPoint.x - playerShipCentre.x;
                 float yTouchDiff = touchPoint.y - playerShipCentre.y;
 
-                float xMove = xTouchDiff / touchDistance * 2 * deltaTime;
-                float yMove = yTouchDiff / touchDistance * 2* deltaTime;
+                float xMove = xTouchDiff / touchDistance * player.getSpeed() * deltaTime;
+                float yMove = yTouchDiff / touchDistance * player.getSpeed() * deltaTime;
 
                 if(xMove > 0) {
                     xMove = Math.min(xMove, rightLimit);
@@ -111,8 +112,8 @@ public class GameScreen extends AbstractScreen {
                 } else {
                     yMove = Math.max(yMove, downLimit);
                 }
-                player.moveBy(1, 1);
-                Log.v("ccc", "handleInput: " + xMove);
+                player.moveBy(2, 2);
+                Log.v("ccc", "handleInput: " + 0.02389);
                 Log.v("ccc", "handleInput: " + yMove);
             }
         }

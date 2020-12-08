@@ -11,7 +11,7 @@ public class Player extends GameObject{
 
     public void draw(SpriteBatch batch) {
         batch.begin();
-        batch.draw(objectTexture, getPosX(), getPosY(), 30, 30);
+        batch.draw(objectTexture, getPosX(), getPosY(), width, height);
         batch.end();
     }
 }

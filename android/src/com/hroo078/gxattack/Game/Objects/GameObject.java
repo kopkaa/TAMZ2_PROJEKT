@@ -10,7 +10,7 @@ public abstract class GameObject {
     protected Sprite sprite;
     protected TextureRegion objectTexture;
     protected int width, height;
-    protected float posX, posY, speedX, speedY;
+    protected float posX, posY, speed;
 
     private SpriteSheet sheet = new SpriteSheet("sheet.xml");
 
@@ -27,13 +27,11 @@ public abstract class GameObject {
         return posY;
     }
 
-    public float getSpeedX() {
-        return speedX;
+    public float getSpeed() {
+        return speed;
     }
 
-    public float getSpeedY() {
-        return speedY;
-    }
+    public void setSpeed(float speed) { this.speed = speed; }
 
     public int getWidth() {
         return width;
