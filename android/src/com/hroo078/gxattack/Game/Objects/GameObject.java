@@ -52,8 +52,8 @@ public abstract class GameObject {
     }
 
     public void moveBy(float dx, float dy) {
-        sprite.setY(sprite.getY() + dy);
-        sprite.setX(sprite.getX() + dx);
+        setPosX(posX + dx);
+        setPosY(posY + dy);
     }
 
     public void setTexture(String name) {
