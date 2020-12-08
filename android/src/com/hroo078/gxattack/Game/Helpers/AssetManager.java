@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.hroo078.gxattack.Game.GallaxyAttackGame;
+
 
 public class AssetManager {
 
@@ -69,7 +71,7 @@ public class AssetManager {
     }
 
     public void inicializeFonts() {
-        font = assetManager.manager.get(assetManager.fontFile);
+        font = GallaxyAttackGame.assetManager.manager.get(GallaxyAttackGame.assetManager.fontFile);
         font.setColor(255, 249, 129, 1);
     }
 
@@ -91,19 +93,19 @@ public class AssetManager {
     }
 
     public void inicializeImages() {
-        playerTExture = assetManager.manager.get(assetManager.playerImage, Texture.class);
-        wallLargeTexture = assetManager.manager.get(assetManager.wallLargeImage, Texture.class);
-        wallMediumTexture = assetManager.manager.get(assetManager.wallMediumImage, Texture.class);
-        wallSmallTexture = assetManager.manager.get(assetManager.wallSmallImage, Texture.class);
-        enemyTexture1a = assetManager.manager.get(assetManager.enemyImage1a, Texture.class);
-        enemyTexture1b = assetManager.manager.get(assetManager.enemyImage1b, Texture.class);
-        enemyTexture2a = assetManager.manager.get(assetManager.enemyImage2a, Texture.class);
-        enemyTexture2b = assetManager.manager.get(assetManager.enemyImage2b, Texture.class);
-        enemyBulletTexture = assetManager.manager.get(assetManager.enemyBulletImage, Texture.class);
-        playerBulletTexture = assetManager.manager.get(assetManager.playerBulletImage, Texture.class);
-        explosionAtlas = assetManager.manager.get(assetManager.explosionImage);
-        backgroundTexture = assetManager.manager.get(assetManager.backgroundImage, Texture.class);
-        starsTexture = assetManager.manager.get(assetManager.starsImage, Texture.class);
+        playerTExture = GallaxyAttackGame.assetManager.manager.get(GallaxyAttackGame.assetManager.playerImage, Texture.class);
+        wallLargeTexture = GallaxyAttackGame.assetManager.manager.get(GallaxyAttackGame.assetManager.wallLargeImage, Texture.class);
+        wallMediumTexture = GallaxyAttackGame.assetManager.manager.get(GallaxyAttackGame.assetManager.wallMediumImage, Texture.class);
+        wallSmallTexture = GallaxyAttackGame.assetManager.manager.get(GallaxyAttackGame.assetManager.wallSmallImage, Texture.class);
+        enemyTexture1a = GallaxyAttackGame.assetManager.manager.get(GallaxyAttackGame.assetManager.enemyImage1a, Texture.class);
+        enemyTexture1b = GallaxyAttackGame.assetManager.manager.get(GallaxyAttackGame.assetManager.enemyImage1b, Texture.class);
+        enemyTexture2a = GallaxyAttackGame.assetManager.manager.get(GallaxyAttackGame.assetManager.enemyImage2a, Texture.class);
+        enemyTexture2b = GallaxyAttackGame.assetManager.manager.get(GallaxyAttackGame.assetManager.enemyImage2b, Texture.class);
+        enemyBulletTexture = GallaxyAttackGame.assetManager.manager.get(GallaxyAttackGame.assetManager.enemyBulletImage, Texture.class);
+        playerBulletTexture = GallaxyAttackGame.assetManager.manager.get(GallaxyAttackGame.assetManager.playerBulletImage, Texture.class);
+        explosionAtlas = GallaxyAttackGame.assetManager.manager.get(GallaxyAttackGame.assetManager.explosionImage);
+        backgroundTexture = GallaxyAttackGame.assetManager.manager.get(GallaxyAttackGame.assetManager.backgroundImage, Texture.class);
+        starsTexture = GallaxyAttackGame.assetManager.manager.get(GallaxyAttackGame.assetManager.starsImage, Texture.class);
     }
 
     // a small set of images used by the loading screen
@@ -163,3 +165,4 @@ public class AssetManager {
         gameOverSound.dispose();
         playerHitSound.dispose();
     }
+}

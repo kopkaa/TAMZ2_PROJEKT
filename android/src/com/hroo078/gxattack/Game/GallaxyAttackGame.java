@@ -4,9 +4,10 @@ import android.content.res.Resources;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
+import com.hroo078.gxattack.Game.Helpers.Sound;
+import com.hroo078.gxattack.Game.Screens.ScreenEnum;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.hroo078.gxattack.Game.Screens.MenuScreen;
+import com.hroo078.gxattack.Game.Helpers.AssetManager;
 import com.hroo078.gxattack.Game.Screens.ScreenEnum;
 
 
@@ -14,6 +15,7 @@ public class GallaxyAttackGame extends Game {
 
 	public static Skin gameSkin;
 	public static Sound sound;
+	public static AssetManager assetManager = new AssetManager();
 
 	@Override
 	public void create() {

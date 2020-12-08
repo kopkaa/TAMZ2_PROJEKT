@@ -1,7 +1,9 @@
 package com.hroo078.gxattack.Game.Helpers;
 
+import com.hroo078.gxattack.Game.GallaxyAttackGame;
+
 public class Sound {
-    private AssetManager assetManager = Main.assetManager;
+    private AssetManager assetManager = GallaxyAttackGame.assetManager;
 
     public static boolean musicEnabled = true;
     public static boolean soundEnabled = true;
