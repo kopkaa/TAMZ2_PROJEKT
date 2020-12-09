@@ -20,15 +20,22 @@ public class AboutScreen extends MenuScreen {
 
     public AboutScreen() {
         stage = new Stage();
-
+        Gdx.input.setInputProcessor(stage);
 
         VerticalGroup group = new VerticalGroup();
         int groupHeight = 0;
 
         TextButton authorLabel = new TextButton("Author: Jan Hromadka (school project)", GallaxyAttackGame.gameSkin, "default");
-        authorLabel.getLabel().setFontScale(3.75f, 3.75f);
+        authorLabel.getLabel().setFontScale(1.15f, 2.15f);
         Container<TextButton> container = new Container<TextButton>(authorLabel);
-        container.padTop(5);
+        container.padTop(40);
+        groupHeight += 120;
+        group.addActor(container);
+
+        TextButton versionlabel = new TextButton("Version: 1.0.0", GallaxyAttackGame.gameSkin, "default");
+        versionlabel.getLabel().setFontScale(1.15f, 2.15f);
+        container = new Container<TextButton>(versionlabel);
+        container.padTop(authorLabel.getHeight() + 10);
         groupHeight += 120;
         group.addActor(container);
 
@@ -41,7 +48,7 @@ public class AboutScreen extends MenuScreen {
         });
         backButton.getLabel().setFontScale(3.25f, 3.25f);
         container = new Container<TextButton>(backButton);
-        container.padTop(200);
+        container.padTop(500);
         groupHeight += 120;
         group.addActor(container);
 
