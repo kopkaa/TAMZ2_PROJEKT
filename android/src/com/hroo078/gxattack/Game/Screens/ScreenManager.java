@@ -9,28 +9,20 @@ public class ScreenManager {
 
     private Game game;
 
-    private ScreenManager() {
+    public ScreenManager(Game game) {
         super();
+        this.game = game;
     }
 
-    public static ScreenManager getInstance() {
-        if(instance == null) {
-            new ScreenManager();
-        }
-        return instance;
-    }
 
     public void init(Game game) {
         this.game = game;
     }
 
-    public void showScreen(ScreenEnum screenEnum, Object... params) {
+    public void showScreen(ScreenEnum screenEnum) {
 
         Screen currentScreen = game.getScreen();
-
-        AbstractScreen newScreen = screenEnum.getScreen(params);
-        newScreen.buildStage();
-        game.setScreen(newScreen);
+        game.setScreen(screenEnum.getScreen());
 
         if (currentScreen != null) {
             currentScreen.dispose();
