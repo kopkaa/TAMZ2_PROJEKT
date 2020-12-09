@@ -54,31 +54,6 @@ public class AboutScreen extends MenuScreen {
 
         group.setPosition(Gdx.graphics.getWidth() /2 - group.getWidth() / 2,Gdx.graphics.getHeight()/2  + groupHeight / 2);
         stage.addActor(group);
-
-//        TextButton aboutLabel = new TextButton("About", GallaxyAttackGame.gameSkin, "default");
-//        aboutLabel.getLabel().setFontScale(4.75f,4.75f);
-//        aboutLabel.setPosition(Gdx.graphics.getWidth() /2 - aboutLabel.getWidth() / 2, 750);
-//
-//        TextButton authorLabel = new TextButton("Author: Jan Hromadka (school project)", GallaxyAttackGame.gameSkin, "default");
-//        aboutLabel.getLabel().setFontScale(3.75f, 3.75f);
-//        aboutLabel.setPosition(Gdx.graphics.getWidth() /2 - authorLabel.getWidth() / 2, 550);
-//
-//
-//
-//        TextButton backButton = new TextButton("Back", GallaxyAttackGame.gameSkin, "default");
-//        backButton.getLabel().setFontScale(3.75f,3.75f);
-//        backButton.setPosition(Gdx.graphics.getWidth() /2 - backButton.getWidth() / 2, 200);
-//        backButton.addListener(new ChangeListener() {
-//            @Override
-//            public void changed(ChangeEvent event, Actor actor) {
-//                GallaxyAttackGame.screenManager.showScreen(ScreenEnum.MAIN_MENU);
-//
-//            }
-//        });
-//
-//        stage.addActor(authorLabel);
-//        stage.addActor(aboutLabel);
-//        stage.addActor(backButton);
     }
 
     @Override

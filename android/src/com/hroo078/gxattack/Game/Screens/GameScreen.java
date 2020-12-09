@@ -25,7 +25,9 @@ public class GameScreen extends AbstractScreen {
     private Stage stage;
 
     private Player player;
-    private final float TOUC_MOVEMENT_TRESHOLD = 1.5f;
+
+    public static int level;
+    public static int score;
 
 
     public GameScreen() {
@@ -72,52 +74,10 @@ public class GameScreen extends AbstractScreen {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         drawBackground();
-        handleInput(delta);
         player.draw(batch);
         stage.draw();
     }
 
-    public void handleInput(float deltaTime) {
-        float rightLimit, leftLimit,upLimit, downLimit;
-        leftLimit = -player.getPosX();
-        downLimit = - player.getPosY();
-        rightLimit = Gdx.graphics.getWidth() - player.getPosX() - player.getWidth();
-        upLimit = Gdx.graphics.getHeight() / 2 - player.getPosY() - player.getHeight();
-
-        if(Gdx.input.isTouched()) {
-            float xTouchPixels = Gdx.input.getX();
-            float yTouchPixels = Gdx.input.getY();
-
-            Vector2 touchPoint = new Vector2(xTouchPixels, yTouchPixels);
-            touchPoint = getViewport().unproject(touchPoint);
-
-            Vector2 playerShipCentre = new Vector2(player.getPosX() + player.getWidth(), player.getPosY() + player.getHeight());
-
-            float touchDistance = touchPoint.dst(playerShipCentre);
-            if(true) {
-                float xTouchDiff = touchPoint.x - playerShipCentre.x;
-                float yTouchDiff = touchPoint.y - playerShipCentre.y;
-
-                float xMove = xTouchDiff / touchDistance * player.getSpeed() * deltaTime;
-                float yMove = yTouchDiff / touchDistance * player.getSpeed() * deltaTime;
-
-                if(xMove > 0) {
-                    xMove = Math.min(xMove, rightLimit);
-                } else {
-                    xMove = Math.max(xMove, leftLimit);
-                }
-
-                if(yMove > 0) {
-                    yMove = Math.min(yMove, upLimit);
-                } else {
-                    yMove = Math.max(yMove, downLimit);
-                }
-                player.moveBy(2, 2);
-                Log.v("ccc", "handleInput: " + 0.02389);
-                Log.v("ccc", "handleInput: " + yMove);
-            }
-        }
-    }
     @Override
     public void resize(int width, int height) {
         getViewport().update(width,height,true);

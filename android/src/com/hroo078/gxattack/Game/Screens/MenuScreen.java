@@ -60,6 +60,7 @@ public class MenuScreen extends AbstractScreen {
         int pTop;
 
         TextButton about = new TextButton("ABOUT", GallaxyAttackGame.gameSkin, "default");
+        TextButton newGame = new TextButton("PLAY GAME", GallaxyAttackGame.gameSkin, "default");
 
         about.addListener(new ChangeListener() {
             @Override
@@ -68,7 +69,14 @@ public class MenuScreen extends AbstractScreen {
             }
         });
 
-        menuButtons.add(new TextButton("PLAY GAME", GallaxyAttackGame.gameSkin, "default"));
+        newGame.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                GallaxyAttackGame.screenManager.showScreen(ScreenEnum.GAME);
+            }
+        });
+
+        menuButtons.add(newGame);
         menuButtons.add(new TextButton("SETTINGS", GallaxyAttackGame.gameSkin, "default"));
         menuButtons.add(new TextButton("HIGH SCORE", GallaxyAttackGame.gameSkin, "default"));
         menuButtons.add(about);
