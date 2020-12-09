@@ -6,10 +6,12 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.hroo078.gxattack.Game.GallaxyAttackGame;
 
 
@@ -21,11 +23,11 @@ public class MenuScreen extends AbstractScreen {
     private Stage stage;
 
     // Background
-    private Texture background;
-    private Texture logo;
-    private SpriteBatch batch;
-    private SpriteBatch logoBatch;
-    private int backgroundOffset;
+    protected Texture background;
+    protected Texture logo;
+    protected SpriteBatch batch;
+    protected SpriteBatch logoBatch;
+    protected int backgroundOffset;
 
     // Buttons
     private ArrayList<TextButton> menuButtons = new ArrayList<>();
@@ -42,7 +44,7 @@ public class MenuScreen extends AbstractScreen {
         initButtons();
     }
 
-    public void initBackground() {
+    protected void initBackground() {
         background = new Texture("space_black.png");
         backgroundOffset = 0;
         batch = new SpriteBatch();
@@ -57,10 +59,19 @@ public class MenuScreen extends AbstractScreen {
         int groupHeight = 0;
         int pTop;
 
+        TextButton about = new TextButton("ABOUT", GallaxyAttackGame.gameSkin, "default");
+
+        about.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                GallaxyAttackGame.screenManager.showScreen(ScreenEnum.ABOUT);
+            }
+        });
+
         menuButtons.add(new TextButton("PLAY GAME", GallaxyAttackGame.gameSkin, "default"));
         menuButtons.add(new TextButton("SETTINGS", GallaxyAttackGame.gameSkin, "default"));
         menuButtons.add(new TextButton("HIGH SCORE", GallaxyAttackGame.gameSkin, "default"));
-        menuButtons.add(new TextButton("ABOUT", GallaxyAttackGame.gameSkin, "default"));
+        menuButtons.add(about);
 
         for(int i = 0; i <= menuButtons.size()-1; i++) {
             menuButtons.get(i).getLabel().setFontScale(2.15f,2.15f);
@@ -78,7 +89,7 @@ public class MenuScreen extends AbstractScreen {
         stage.addActor(group);
     }
 
-    public void drawBackground() {
+    protected void drawBackground() {
         batch.setProjectionMatrix(getCamera().combined);
         batch.begin();
 
@@ -92,7 +103,7 @@ public class MenuScreen extends AbstractScreen {
         batch.end();
     }
 
-    public void drawLogo() {
+    protected void drawLogo() {
         int posY = Gdx.graphics.getHeight() - logo.getHeight() - 50;
         logoBatch.begin();
         logoBatch.draw(logo, Gdx.graphics.getWidth() /2 - logo.getWidth() / 2, posY );

@@ -5,17 +5,10 @@ import com.badlogic.gdx.Screen;
 
 public class ScreenManager {
 
-    private static ScreenManager instance;
-
     private Game game;
 
     public ScreenManager(Game game) {
         super();
-        this.game = game;
-    }
-
-
-    public void init(Game game) {
         this.game = game;
     }
 

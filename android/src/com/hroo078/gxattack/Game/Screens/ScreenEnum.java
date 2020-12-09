@@ -11,6 +11,11 @@ public enum ScreenEnum {
         public AbstractScreen getScreen(Object... params) {
             return new GameScreen();
         }
+    },
+    ABOUT {
+        public AbstractScreen getScreen(Object... params) {
+            return new AboutScreen();
+        }
     };
 
     public abstract AbstractScreen getScreen(Object... params);
