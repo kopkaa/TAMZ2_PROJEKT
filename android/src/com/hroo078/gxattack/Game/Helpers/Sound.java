@@ -62,8 +62,8 @@ public class Sound {
 
     public void playShootSound() {
         if (soundEnabled) {
-            assetManager.shootSound.stop();
             assetManager.shootSound.play();
+            assetManager.shootSound.stop();
         }
 
     }

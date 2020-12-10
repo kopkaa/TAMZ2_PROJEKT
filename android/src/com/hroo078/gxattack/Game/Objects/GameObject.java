@@ -1,10 +1,12 @@
 package com.hroo078.gxattack.Game.Objects;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.hroo078.gxattack.Game.UI.SpriteSheet;
 
 public abstract class GameObject extends Sprite{
+    protected SpriteBatch batch;
     protected TextureRegion objectTexture;
     protected int width, height;
     protected float posX, posY, speed;
@@ -12,6 +14,7 @@ public abstract class GameObject extends Sprite{
     private SpriteSheet sheet = new SpriteSheet("sheet.xml");
 
     public GameObject(int width, int height) {
+        batch = new SpriteBatch();
         this.width = width;
         this.height = height;
     }
