@@ -18,7 +18,6 @@ public class Player extends GameObject {
         super(width, height);
         lives = 3;
         isAlive = true;
-        makeBullets();
     }
 
     private void draw(SpriteBatch batch) {
@@ -36,13 +35,11 @@ public class Player extends GameObject {
 
     private void drawBullets(float dt) {
         for (int i = 0; i < getBullets().length; i++) {
-            getBullets()[i].update(dt);
-        }
-    }
-
-    private void makeBullets() {
-        for(int i = 0; i < getBullets().length; i++) {
-            bullets[i] = new Bullet(10,10,Type.PLAYER);
+            if(getBullets()[i] == null ) {
+                break;
+            } else {
+                getBullets()[i].update(dt);
+            }
         }
     }
 
@@ -59,16 +56,16 @@ public class Player extends GameObject {
 
                     else if (Gdx.input.getX(i) < getPosX() ) {
                         setPosX(getPosX() - getSpeed());  // pohyb doleva
+                        bullets[i] = new Bullet(10,10,Type.PLAYER);
                     }
                 }
                 else {
-                    for(int j=0; j < getBullets().length; j++) {
-                        getBullets()[j].shoot((getPosX() + getWidth() / 2) - (getBullets()[j].getWidth() / 2 ), getPosY() + getHeight(), Direction.UP);
-                        //GallaxyAttackGame.sound.playShootSound();
-                    }
+                    bullets[i] = new Bullet(10,10,Type.PLAYER);
                 }
             }
         }
+
+
     }
 
     public Bullet[] getBullets() {

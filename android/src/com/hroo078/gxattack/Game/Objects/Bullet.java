@@ -30,6 +30,7 @@ public class Bullet extends GameObject{
     }
 
     public void update(float dt) {
+        setPosY(getPosY() + 10);
         draw(batch);
     }
 

@@ -33,7 +33,7 @@ public class GameScreen extends AbstractScreen {
     public GameScreen() {
         player = new Player(100,100);
         player.setTexture("playerShip1_red.png");
-        player.setSpeed(2.15f);
+        player.setSpeed(3.15f);
         level = 1;
         score = 0;
         buildStage();
