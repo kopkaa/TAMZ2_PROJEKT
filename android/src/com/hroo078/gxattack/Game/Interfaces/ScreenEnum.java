@@ -1,4 +1,9 @@
-package com.hroo078.gxattack.Game.Screens;
+package com.hroo078.gxattack.Game.Interfaces;
+
+import com.hroo078.gxattack.Game.Screens.AboutScreen;
+import com.hroo078.gxattack.Game.Screens.AbstractScreen;
+import com.hroo078.gxattack.Game.Screens.GameScreen;
+import com.hroo078.gxattack.Game.Screens.MenuScreen;
 
 public enum ScreenEnum {
 

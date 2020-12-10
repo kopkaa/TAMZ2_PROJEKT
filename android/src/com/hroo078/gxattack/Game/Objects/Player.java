@@ -9,6 +9,7 @@ public class Player extends GameObject {
     private SpriteBatch batch;
     public int lives;
     public boolean isAlive;
+    private static boolean shootsAlreadyFired = false;
 
     public Player(int width, int height) {
         super(width, height);
@@ -37,11 +38,11 @@ public class Player extends GameObject {
                 if (Gdx.input.getY(i) > Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 5) { // spodni cast obrazovky
 
                     if (Gdx.input.getX(i) > getPosX() ) {
-                        this.setPosX(getPosX() + getSpeed());  // pohyb doprava
+                        setPosX(getPosX() + getSpeed());  // pohyb doprava
                     }
 
                     else if (Gdx.input.getX(i) < getPosX() ) {
-                        this.setPosX(getPosX() - getSpeed());  // pohyb doleva
+                        setPosX(getPosX() - getSpeed());  // pohyb doleva
                     }
                 }
             }

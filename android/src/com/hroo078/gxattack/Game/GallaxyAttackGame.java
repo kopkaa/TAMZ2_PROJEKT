@@ -1,14 +1,11 @@
 package com.hroo078.gxattack.Game;
 
-import android.content.res.Resources;
-
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.hroo078.gxattack.Game.Helpers.Sound;
-import com.hroo078.gxattack.Game.Screens.ScreenEnum;
+import com.hroo078.gxattack.Game.Interfaces.ScreenEnum;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.hroo078.gxattack.Game.Helpers.AssetManager;
-import com.hroo078.gxattack.Game.Screens.ScreenEnum;
 import com.hroo078.gxattack.Game.Screens.ScreenManager;
 
 

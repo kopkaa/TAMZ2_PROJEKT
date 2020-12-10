@@ -1,4 +1,5 @@
 package com.hroo078.gxattack.Game.Interfaces;
 
-public interface IBullet {
+public enum Direction {
+    UP, DOWN, NOWHERE
 }

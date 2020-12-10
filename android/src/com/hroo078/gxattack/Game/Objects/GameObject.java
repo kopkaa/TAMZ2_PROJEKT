@@ -1,13 +1,10 @@
 package com.hroo078.gxattack.Game.Objects;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.hroo078.gxattack.Game.UI.SpriteSheet;
 
-public abstract class GameObject {
-    protected Sprite sprite;
+public abstract class GameObject extends Sprite{
     protected TextureRegion objectTexture;
     protected int width, height;
     protected float posX, posY, speed;
@@ -33,11 +30,11 @@ public abstract class GameObject {
 
     public void setSpeed(float speed) { this.speed = speed; }
 
-    public int getWidth() {
+    public float getWidth() {
         return width;
     }
 
-    public int getHeight() {
+    public float getHeight() {
         return height;
     }
 

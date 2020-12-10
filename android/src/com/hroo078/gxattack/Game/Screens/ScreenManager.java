@@ -2,6 +2,7 @@ package com.hroo078.gxattack.Game.Screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
+import com.hroo078.gxattack.Game.Interfaces.ScreenEnum;
 
 public class ScreenManager {
 
