@@ -121,7 +121,7 @@ public class AssetManager {
     }
 
     public void queueAddMusic() {
-        String backgroundMusicFile = "music/Rolemusic_-_pl4y1ng.mp3";
+        String backgroundMusicFile = "music/menu_music.mp3";
         manager.load(backgroundMusicFile, Music.class);
     }
 

@@ -16,7 +16,7 @@ public class Sound {
 
         assetManager.manager.finishLoading();
 
-        assetManager.backgroundMusic = assetManager.manager.get("music/Rolemusic_-_pl4y1ng.mp3");
+        assetManager.backgroundMusic = assetManager.manager.get("music/menu_music.mp3");
         assetManager.backgroundMusic.play();
         assetManager.backgroundMusic.setLooping(true);
         assetManager.backgroundMusic.setVolume(musicVolume);

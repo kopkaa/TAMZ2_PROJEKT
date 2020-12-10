@@ -54,6 +54,10 @@ public abstract class GameObject {
         setPosY(posY + dy);
     }
 
+    public void update(float dt){
+
+    }
+
     public void setTexture(String name) {
         objectTexture = sheet.getSpriteRegion(name);
     }

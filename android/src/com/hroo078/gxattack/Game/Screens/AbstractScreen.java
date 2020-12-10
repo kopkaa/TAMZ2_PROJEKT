@@ -15,7 +15,7 @@ public abstract class AbstractScreen extends Stage implements Screen {
 
 
     protected AbstractScreen() {
-        super( new StretchViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera()) );
+        super();
     }
 
 

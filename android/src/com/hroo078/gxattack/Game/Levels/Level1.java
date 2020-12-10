@@ -20,6 +20,11 @@ public class Level1 implements Screen, ILevel {
     }
 
     @Override
+    public void updateLevel() {
+
+    }
+
+    @Override
     public void render(float delta) {
 
     }

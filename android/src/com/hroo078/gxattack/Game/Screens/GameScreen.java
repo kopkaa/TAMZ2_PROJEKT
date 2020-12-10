@@ -34,15 +34,11 @@ public class GameScreen extends AbstractScreen {
         player = new Player(100,100);
         player.setTexture("playerShip1_red.png");
         player.setSpeed(2.15f);
+        level = 1;
+        score = 0;
         buildStage();
     }
 
-    @Override
-    public void buildStage() {
-        stage = new Stage();
-        batch = new SpriteBatch();
-        initBackground();
-    }
 
     public void initBackground() {
         background = new Texture("space_black.png");
@@ -64,6 +60,17 @@ public class GameScreen extends AbstractScreen {
         batch.end();
     }
 
+    public void gameLoop(float dt) {
+        player.update(dt);
+    }
+
+    @Override
+    public void buildStage() {
+        stage = new Stage();
+        batch = new SpriteBatch();
+        initBackground();
+    }
+
     @Override
     public void show() {
 
@@ -74,9 +81,10 @@ public class GameScreen extends AbstractScreen {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         drawBackground();
-        player.draw(batch);
+        gameLoop(delta);
         stage.draw();
     }
+
 
     @Override
     public void resize(int width, int height) {
