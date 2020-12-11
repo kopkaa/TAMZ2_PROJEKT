@@ -7,11 +7,16 @@ import com.hroo078.gxattack.Game.GallaxyAttackGame;
 import com.hroo078.gxattack.Game.Interfaces.Direction;
 import com.hroo078.gxattack.Game.Interfaces.Type;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+
 public class Player extends GameObject {
 
     public int lives;
     public boolean isAlive;
-    private Bullet[] bullets = new Bullet[3];
+   List<Bullet> bullets = new ArrayList<Bullet>();
+    private int bulletsActive;
     private static boolean shootsAlreadyFired = false;
 
     public Player(int width, int height) {
@@ -34,14 +39,13 @@ public class Player extends GameObject {
     }
 
     private void drawBullets(float dt) {
-        for (int i = 0; i < getBullets().length; i++) {
-            if(getBullets()[i] == null ) {
-                break;
-            } else {
-                getBullets()[i].update(dt);
-            }
+        ListIterator<Bullet> bullets = this.bullets.listIterator();
+        while (bullets.hasNext()) {
+            Bullet bull = bullets.next();
+            bull.update(dt);
         }
     }
+
 
     public void checkInput() {
         int screenTouchedSt = 0;
@@ -56,11 +60,10 @@ public class Player extends GameObject {
 
                     else if (Gdx.input.getX(i) < getPosX() ) {
                         setPosX(getPosX() - getSpeed());  // pohyb doleva
-                        bullets[i] = new Bullet(10,10,Type.PLAYER);
                     }
                 }
                 else {
-                    bullets[i] = new Bullet(10,10,Type.PLAYER);
+                    bullets.add(new Bullet(10,10, Type.PLAYER));
                 }
             }
         }
@@ -68,7 +71,7 @@ public class Player extends GameObject {
 
     }
 
-    public Bullet[] getBullets() {
+    public List<Bullet> getBullets() {
         return bullets;
     }
 }
