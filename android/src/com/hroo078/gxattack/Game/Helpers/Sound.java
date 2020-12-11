@@ -12,11 +12,9 @@ public class Sound {
 
     public Sound() {
 
-        assetManager.queueAddMusic();
-
+        assetManager.loadSounds();
         assetManager.manager.finishLoading();
-
-        assetManager.backgroundMusic = assetManager.manager.get("music/menu_music.mp3");
+        assetManager.initSounds();
         assetManager.backgroundMusic.play();
         assetManager.backgroundMusic.setLooping(true);
         assetManager.backgroundMusic.setVolume(musicVolume);
@@ -56,11 +54,12 @@ public class Sound {
     public void changeSoundVolume(float volume) {
         soundVolume = volume;
         assetManager.explosionSound.setVolume(volume);
-        assetManager.shootSound.setVolume(volume);
+        assetManager.shootSound.setVolume(1, volume);
         assetManager.rockSound.setVolume(volume);
     }
 
     public void playShootSound() {
+
         if (soundEnabled) {
             assetManager.shootSound.play();
             assetManager.shootSound.stop();
@@ -76,6 +75,7 @@ public class Sound {
     }
 
     public void playRockSound() {
+
         if (soundEnabled) {
             assetManager.rockSound.stop();
             assetManager.rockSound.play();

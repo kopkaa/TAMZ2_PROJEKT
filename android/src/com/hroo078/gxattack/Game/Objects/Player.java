@@ -1,5 +1,7 @@
 package com.hroo078.gxattack.Game.Objects;
 
+import android.util.Log;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -63,7 +65,10 @@ public class Player extends GameObject {
                     }
                 }
                 else {
-                    bullets.add(new Bullet(10,10, Type.PLAYER));
+                    Bullet bull = new Bullet(10,10, Type.PLAYER);
+                    bull.setPosition(getPosX() + getWidth() / 2, getPosY());
+                    bullets.add(bull);
+                    GallaxyAttackGame.sound.playRockSound();
                 }
             }
         }

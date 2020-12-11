@@ -34,25 +34,5 @@ public class Bullet extends GameObject{
         draw(batch);
     }
 
-    public boolean shoot(float startX, float startY, Direction direction) {
-        if(!status){
-            setBounds(startX, startY, getWidth(), getHeight());
-            this.direction = direction;
-            status = true;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public Bullet[] makeBullets(int count, Type type) {
-        Bullet[] bullets = new Bullet[count];
-        for(int i = 0; i <= count; i++ ) {
-            bullets[i] = new Bullet(2,5,type);
-        }
-
-        return bullets;
-    }
-
 
 }

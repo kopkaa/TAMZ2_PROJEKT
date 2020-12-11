@@ -49,6 +49,8 @@ public abstract class GameObject extends Sprite{
         this.posY = posY;
     }
 
+    public void setPosition(float posX, float posY) {this.posX = posX; this.posY = posY;}
+
     public void moveBy(float dx, float dy) {
         setPosX(posX + dx);
         setPosY(posY + dy);
