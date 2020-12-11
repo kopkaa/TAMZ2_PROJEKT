@@ -1,12 +1,10 @@
 package com.hroo078.gxattack.Game.Objects;
 
-import android.util.Log;
-
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.hroo078.gxattack.Game.GallaxyAttackGame;
-import com.hroo078.gxattack.Game.Interfaces.Direction;
+import com.hroo078.gxattack.Game.Interfaces.ScreenEnum;
 import com.hroo078.gxattack.Game.Interfaces.Type;
 
 import java.util.ArrayList;
@@ -51,6 +49,10 @@ public class Player extends GameObject {
 
     public void checkInput() {
         int screenTouchedSt = 0;
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+            GallaxyAttackGame.soundManager.stopGameMusic();
+            GallaxyAttackGame.screenManager.showScreen(ScreenEnum.MAIN_MENU);
+        }
         for (int i = 0; i < 3; i++) {
             if (Gdx.input.isTouched(i)) {
                 screenTouchedSt++;
@@ -68,7 +70,7 @@ public class Player extends GameObject {
                     Bullet bull = new Bullet(10,10, Type.PLAYER);
                     bull.setPosition(getPosX() + getWidth() / 2, getPosY());
                     bullets.add(bull);
-                    GallaxyAttackGame.sound.playRockSound();
+                    GallaxyAttackGame.soundManager.playRockSound();
                 }
             }
         }

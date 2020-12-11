@@ -13,8 +13,8 @@ import com.hroo078.gxattack.Game.GallaxyAttackGame;
 
 public class AssetManager {
 
-    public Music backgroundMusic;
-    public Music explosionSound;
+    public Music menuMusic;
+    public Music gameMusic;
     public Sound shootSound;
     public Music rockSound;
     public Music gameOverSound;
@@ -24,28 +24,28 @@ public class AssetManager {
     public final com.badlogic.gdx.assets.AssetManager manager = new com.badlogic.gdx.assets.AssetManager();
 
     private final String explosionSoundFile = "sounds/explosion.wav";
-    private final String shootSoundFile = "sounds/shoot.wav";
-    private final String rockSoundFile = "sounds/rock.mp3";
-    private final String gameOverSoundFile = "sounds/gameOver.mp3";
-    private final String playerHitSoundFile = "sounds/playerHit.wav";
-    private final String bgMusic = "music/menu_music.mp3";
+    private final String rockSoundFile = "sounds/sfx_laser1.ogg";
+    private final String gameMusicFile = "music/soundtrack.mp3";
+    private final String menuMusicFile = "music/menu_music.mp3";
 
 
 
     public void loadSounds() {
-        manager.load(bgMusic, Music.class);
-        manager.load(shootSoundFile, Music.class);
+        manager.load(menuMusicFile, Music.class);
+        manager.load(gameMusicFile, Music.class);
+        manager.load(rockSoundFile, Music.class);
         //manager.load(shootSoundFile, Music.class);
     }
 
     public void initSounds() {
-        backgroundMusic = manager.get("music/menu_music.mp3");
-        rockSound = manager.get("sounds/rock.mp3");
+        menuMusic = manager.get("music/menu_music.mp3");
+        gameMusic = manager.get("music/soundtrack.mp3");
+        rockSound = manager.get("sounds/sfx_laser1.ogg");
     }
 
     public void dispose() {
-        backgroundMusic.dispose();
-        explosionSound.dispose();
+        menuMusic.dispose();
+        gameMusic.dispose();
         shootSound.dispose();
         rockSound.dispose();
         gameOverSound.dispose();

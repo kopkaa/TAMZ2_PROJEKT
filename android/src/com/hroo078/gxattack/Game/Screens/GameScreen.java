@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.hroo078.gxattack.Game.GallaxyAttackGame;
 import com.hroo078.gxattack.Game.Objects.Player;
 
 public class GameScreen extends AbstractScreen {
@@ -31,6 +32,7 @@ public class GameScreen extends AbstractScreen {
 
 
     public GameScreen() {
+        GallaxyAttackGame.soundManager.playGameMusic();
         player = new Player(100,100);
         player.setTexture("playerShip1_red.png");
         player.setSpeed(3.15f);

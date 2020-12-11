@@ -1,5 +1,7 @@
 package com.hroo078.gxattack.Game.Screens;
 
+import android.util.Log;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 public class MenuScreen extends AbstractScreen {
 
     private Stage stage;
+    private boolean paused;
 
     // Background
     protected Texture background;
@@ -31,8 +34,10 @@ public class MenuScreen extends AbstractScreen {
     private ArrayList<TextButton> menuButtons = new ArrayList<>();
 
     public MenuScreen() {
+        Log.i("ZDE", "Construct");
         buildStage();
         Gdx.input.setInputProcessor(stage);
+        GallaxyAttackGame.soundManager.playMenuMusic();
     }
 
     @Override
@@ -70,6 +75,7 @@ public class MenuScreen extends AbstractScreen {
         newGame.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GallaxyAttackGame.soundManager.stopMenuMusic();
                 GallaxyAttackGame.screenManager.showScreen(ScreenEnum.GAME);
             }
         });
@@ -138,12 +144,14 @@ public class MenuScreen extends AbstractScreen {
 
     @Override
     public void pause() {
-
+        paused = true;
+        GallaxyAttackGame.soundManager.stopMenuMusic();
     }
 
     @Override
     public void resume() {
-
+        paused = false;
+        GallaxyAttackGame.soundManager.playMenuMusic();
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.hroo078.gxattack.Game.Helpers;
 
 import com.hroo078.gxattack.Game.GallaxyAttackGame;
 
-public class Sound {
+public class SoundManager {
     private AssetManager assetManager = GallaxyAttackGame.assetManager;
 
     public static boolean musicEnabled = true;
@@ -10,29 +10,25 @@ public class Sound {
     public static float musicVolume = 0.5f;
     public static float soundVolume = 1.0f;
 
-    public Sound() {
-
+    public SoundManager() {
         assetManager.loadSounds();
         assetManager.manager.finishLoading();
         assetManager.initSounds();
-        assetManager.backgroundMusic.play();
-        assetManager.backgroundMusic.setLooping(true);
-        assetManager.backgroundMusic.setVolume(musicVolume);
     }
 
 
     public void changeMusicState() {
         if (musicEnabled) {
-            if (!assetManager.backgroundMusic.isPlaying()) {
-                assetManager.backgroundMusic.play();
-                assetManager.backgroundMusic.setLooping(true);
-                assetManager.backgroundMusic.setVolume(musicVolume);
+            if (!assetManager.menuMusic.isPlaying()) {
+                assetManager.menuMusic.play();
+                assetManager.menuMusic.setLooping(true);
+                assetManager.menuMusic.setVolume(musicVolume);
 
             }
         } else {
-            if (assetManager.backgroundMusic.isPlaying()) {
-                assetManager.backgroundMusic.stop();
-                assetManager.backgroundMusic.setLooping(false);
+            if (assetManager.menuMusic.isPlaying()) {
+                assetManager.menuMusic.stop();
+                assetManager.menuMusic.setLooping(false);
             }
         }
     }
@@ -44,7 +40,7 @@ public class Sound {
 
     public void changeMusicVolume(float volume) {
         musicVolume = volume;
-        assetManager.backgroundMusic.setVolume(musicVolume);
+        assetManager.menuMusic.setVolume(musicVolume);
     }
 
     public void setSoundEnabled(boolean enabled) {
@@ -53,7 +49,6 @@ public class Sound {
 
     public void changeSoundVolume(float volume) {
         soundVolume = volume;
-        assetManager.explosionSound.setVolume(volume);
         assetManager.shootSound.setVolume(1, volume);
         assetManager.rockSound.setVolume(volume);
     }
@@ -67,12 +62,7 @@ public class Sound {
 
     }
 
-    public void playExplosionSound() {
-        if (soundEnabled) {
-            assetManager.explosionSound.stop();
-            assetManager.explosionSound.play();
-        }
-    }
+
 
     public void playRockSound() {
 
@@ -83,12 +73,32 @@ public class Sound {
     }
 
     public void playGameOverSound() {
-        assetManager.backgroundMusic.stop();
+        assetManager.menuMusic.stop();
         if (soundEnabled) {
             assetManager.gameOverSound.stop();
             assetManager.gameOverSound.play();
         }
 
+    }
+
+    public void playMenuMusic() {
+        assetManager.menuMusic.play();
+        assetManager.menuMusic.setLooping(true);
+        assetManager.menuMusic.setVolume(musicVolume);
+    }
+
+    public void playGameMusic() {
+        assetManager.gameMusic.play();
+        assetManager.gameMusic.setLooping(true);
+        assetManager.gameMusic.setVolume(musicVolume);
+    }
+
+    public void stopMenuMusic() {
+        assetManager.menuMusic.stop();
+    }
+
+    public void stopGameMusic() {
+        assetManager.gameMusic.stop();
     }
 
     public void playPlayerHitSound() {

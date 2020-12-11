@@ -16,11 +16,14 @@ public class ScreenManager {
     public void showScreen(ScreenEnum screenEnum) {
 
         Screen currentScreen = game.getScreen();
-        game.setScreen(screenEnum.getScreen());
 
         if (currentScreen != null) {
             currentScreen.dispose();
         }
+
+        game.setScreen(screenEnum.getScreen());
+
+
     }
 
 
