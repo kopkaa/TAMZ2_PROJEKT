@@ -12,7 +12,7 @@ import java.util.List;
 public abstract class Enemy extends GameObject {
     List<Bullet> bullets = new ArrayList<Bullet>();
 
-    public Enemy(int width, int height) {
+    public Enemy(float width, float height) {
         super(width, height);
     }
 
@@ -26,6 +26,10 @@ public abstract class Enemy extends GameObject {
         batch.begin();
         batch.draw(sheetTexture, getPosX(), getPosY(), width, height);
         batch.end();
+    }
+
+    public void enemyBulletCollision() {
+
     }
 
     @Override

@@ -18,12 +18,12 @@ public class Player extends GameObject {
 
     public int lives;
     public boolean isAlive;
-    List<Bullet> bullets = new ArrayList<Bullet>();
+    public List<Bullet> bullets = new ArrayList<Bullet>();
     private final float timeBetweenShots = 0.5f;
     private float timeSinceLastShot = 0;
 
 
-    public Player(int width, int height) {
+    public Player(float width, float height) {
         super(width, height);
         lives = 3;
         isAlive = true;
@@ -88,6 +88,7 @@ public class Player extends GameObject {
         if(canShoot()) {
             Bullet bull = new Bullet(10,10, Type.PLAYER);
             bull.setPosition(getPosX() + getWidth() / 2, getHeight());
+            Log.i("BULLS", "PosX: " +getPosX() + " W:" + getWidth());
             bullets.add(bull);
             GallaxyAttackGame.soundManager.playLaserSound();
             timeSinceLastShot = 0;

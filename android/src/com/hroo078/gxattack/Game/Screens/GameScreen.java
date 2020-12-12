@@ -17,7 +17,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.hroo078.gxattack.Game.GallaxyAttackGame;
 import com.hroo078.gxattack.Game.Interfaces.ILevel;
 import com.hroo078.gxattack.Game.Levels.Level1;
+import com.hroo078.gxattack.Game.Objects.Bullet;
+import com.hroo078.gxattack.Game.Objects.Enemies.Enemy;
 import com.hroo078.gxattack.Game.Objects.Player;
+
+import java.util.LinkedList;
+import java.util.ListIterator;
 
 public class GameScreen extends AbstractScreen {
 
@@ -41,6 +46,7 @@ public class GameScreen extends AbstractScreen {
         GallaxyAttackGame.soundManager.playGameMusic();
 
         player = new Player(80,70);
+        player.setPosition(20,0);
         player.setTexture("ship1.png", false);
         player.setSpeed(3.15f);
         score = 0;
@@ -54,8 +60,8 @@ public class GameScreen extends AbstractScreen {
     public void initBackground() {
         background = new Texture("space_black.png");
         backgroundOffset = 0;
-
     }
+
 
     public void initLivesLabel() {
         lifeImage = new Texture("images/life.png");
@@ -95,6 +101,7 @@ public class GameScreen extends AbstractScreen {
     }
 
     public void gameLoop(float dt) {
+        detectCollisions();
         player.update(dt);
         if(finishedLevel) {
             updateLevel();
@@ -114,6 +121,24 @@ public class GameScreen extends AbstractScreen {
             default: break;
         }
     }
+    private void detectCollisions() {
+        ListIterator<Bullet> bulletListIterator = player.bullets.listIterator();
+
+        while (bulletListIterator.hasNext()){
+            Bullet bullet = bulletListIterator.next();
+            ListIterator<Enemy> enemyShipListIterator = currentLevel.enemyList.listIterator();
+            while (enemyShipListIterator.hasNext()) {
+                Enemy enemy = enemyShipListIterator.next();
+
+                if(enemy.getBoundingRectangle().overlaps(bullet.getBoundingRectangle())){
+                    score += 5;
+                    bulletListIterator.remove();
+                    break;
+                }
+            }
+        }
+
+    }
     @Override
     public void buildStage() {
         stage = new Stage();
@@ -122,6 +147,7 @@ public class GameScreen extends AbstractScreen {
         initLivesLabel();
         initScoreLabel();
     }
+
 
     @Override
     public void render(float delta) {
