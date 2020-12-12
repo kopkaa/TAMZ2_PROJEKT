@@ -15,9 +15,9 @@ public class Bullet extends GameObject{
     public Bullet(int width, int height, Type type) {
         super(width, height);
         if(type == Type.ENEMY) {
-            setTexture("laserBlue16.png");
+            setTexture("laserBlue16.png", true);
         } else {
-            setTexture("laserBlue16.png");
+            setTexture("laserBlue16.png", true);
         }
         this.type = type;
         this.status = false;
@@ -25,7 +25,7 @@ public class Bullet extends GameObject{
 
     private void draw(SpriteBatch batch) {
         batch.begin();
-        batch.draw(objectTexture, getPosX(), getPosY(), width, height);
+        batch.draw(sheetTexture, getPosX(), getPosY(), width, height);
         batch.end();
     }
 
@@ -33,6 +33,7 @@ public class Bullet extends GameObject{
         setPosY(getPosY() + 10);
         draw(batch);
     }
+
 
 
 }

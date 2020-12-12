@@ -1,7 +1,10 @@
 package com.hroo078.gxattack.Game.Objects;
 
+import android.util.Log;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.hroo078.gxattack.Game.GallaxyAttackGame;
 import com.hroo078.gxattack.Game.Interfaces.ScreenEnum;
@@ -15,9 +18,10 @@ public class Player extends GameObject {
 
     public int lives;
     public boolean isAlive;
-   List<Bullet> bullets = new ArrayList<Bullet>();
-    private int bulletsActive;
-    private static boolean shootsAlreadyFired = false;
+    List<Bullet> bullets = new ArrayList<Bullet>();
+    private final float timeBetweenShots = 0.5f;
+    private float timeSinceLastShot = 0;
+
 
     public Player(int width, int height) {
         super(width, height);
@@ -25,7 +29,8 @@ public class Player extends GameObject {
         isAlive = true;
     }
 
-    private void draw(SpriteBatch batch) {
+    private void draw() {
+        SpriteBatch batch = new SpriteBatch();
         batch.begin();
         batch.draw(objectTexture, getPosX(), getPosY(), width, height);
         batch.end();
@@ -33,7 +38,8 @@ public class Player extends GameObject {
 
     @Override
     public void update(float dt) {
-        draw(batch);
+        draw();
+        timeSinceLastShot += dt;
         checkInput();
         drawBullets(dt);
     }
@@ -43,42 +49,54 @@ public class Player extends GameObject {
         while (bullets.hasNext()) {
             Bullet bull = bullets.next();
             bull.update(dt);
+
+            if(bull.posY >= Gdx.graphics.getHeight()) {
+                this.bullets.remove(bull);
+                break;
+            }
         }
     }
 
 
     public void checkInput() {
-        int screenTouchedSt = 0;
+
         if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
             GallaxyAttackGame.soundManager.stopGameMusic();
             GallaxyAttackGame.screenManager.showScreen(ScreenEnum.MAIN_MENU);
         }
         for (int i = 0; i < 3; i++) {
             if (Gdx.input.isTouched(i)) {
-                screenTouchedSt++;
+
                 if (Gdx.input.getY(i) > Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 5) { // spodni cast obrazovky
 
-                    if (Gdx.input.getX(i) > getPosX() ) {
+                    if (Gdx.input.getX(i) > getPosX() && !(Gdx.input.getX(i) < Gdx.graphics.getWidth() / 2)) {
                         setPosX(getPosX() + getSpeed());  // pohyb doprava
                     }
 
-                    else if (Gdx.input.getX(i) < getPosX() ) {
+                    else if (Gdx.input.getX(i) < getPosX() && !(Gdx.input.getX(i) > Gdx.graphics.getWidth() / 2) ) {
                         setPosX(getPosX() - getSpeed());  // pohyb doleva
                     }
                 }
-                else {
-                    Bullet bull = new Bullet(10,10, Type.PLAYER);
-                    bull.setPosition(getPosX() + getWidth() / 2, getPosY());
-                    bullets.add(bull);
-                    GallaxyAttackGame.soundManager.playRockSound();
+                else { // shoot
+                    shoot();
                 }
             }
         }
-
-
     }
 
-    public List<Bullet> getBullets() {
-        return bullets;
+    public void shoot() {
+        if(canShoot()) {
+            Bullet bull = new Bullet(10,10, Type.PLAYER);
+            bull.setPosition(getPosX() + getWidth() / 2, getHeight());
+            bullets.add(bull);
+            GallaxyAttackGame.soundManager.playLaserSound();
+            timeSinceLastShot = 0;
+            Log.i("BULLS", "bullets: " + bullets.size());
+        }
     }
+
+    public boolean canShoot() {
+        return (timeSinceLastShot - timeBetweenShots >= 0 );
+    }
+
 }

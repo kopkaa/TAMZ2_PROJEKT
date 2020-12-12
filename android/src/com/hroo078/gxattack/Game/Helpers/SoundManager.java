@@ -50,7 +50,7 @@ public class SoundManager {
     public void changeSoundVolume(float volume) {
         soundVolume = volume;
         assetManager.shootSound.setVolume(1, volume);
-        assetManager.rockSound.setVolume(volume);
+        assetManager.laserSound.setVolume(volume);
     }
 
     public void playShootSound() {
@@ -64,11 +64,11 @@ public class SoundManager {
 
 
 
-    public void playRockSound() {
+    public void playLaserSound() {
 
         if (soundEnabled) {
-            assetManager.rockSound.stop();
-            assetManager.rockSound.play();
+            assetManager.laserSound.stop();
+            assetManager.laserSound.play();
         }
     }
 

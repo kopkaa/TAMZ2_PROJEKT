@@ -1,5 +1,6 @@
 package com.hroo078.gxattack.Game.Objects;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -7,7 +8,8 @@ import com.hroo078.gxattack.Game.UI.SpriteSheet;
 
 public abstract class GameObject extends Sprite{
     protected SpriteBatch batch;
-    protected TextureRegion objectTexture;
+    protected TextureRegion sheetTexture;
+    protected Texture objectTexture;
     protected int width, height;
     protected float posX, posY, speed;
 
@@ -60,7 +62,12 @@ public abstract class GameObject extends Sprite{
 
     }
 
-    public void setTexture(String name) {
-        objectTexture = sheet.getSpriteRegion(name);
+    public void setTexture(String name, boolean isSheetTexture) {
+        if(isSheetTexture) {
+            sheetTexture = sheet.getSpriteRegion(name);
+        } else {
+            objectTexture = new Texture(name);
+        }
+
     }
 }
