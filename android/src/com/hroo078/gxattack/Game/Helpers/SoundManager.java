@@ -49,19 +49,8 @@ public class SoundManager {
 
     public void changeSoundVolume(float volume) {
         soundVolume = volume;
-        assetManager.shootSound.setVolume(1, volume);
         assetManager.laserSound.setVolume(volume);
     }
-
-    public void playShootSound() {
-
-        if (soundEnabled) {
-            assetManager.shootSound.play();
-            assetManager.shootSound.stop();
-        }
-
-    }
-
 
 
     public void playLaserSound() {
@@ -101,11 +90,10 @@ public class SoundManager {
         assetManager.gameMusic.stop();
     }
 
-    public void playPlayerHitSound() {
+    public void playExplosionSound() {
         if (soundEnabled) {
-            assetManager.playerHitSound.stop();
-            assetManager.playerHitSound.play();
+            assetManager.explosionSound.stop();
+            assetManager.explosionSound.play();
         }
-
     }
 }

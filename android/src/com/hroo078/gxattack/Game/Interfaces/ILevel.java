@@ -11,4 +11,5 @@ public interface ILevel {
     public void update(float dt);
     public void createEnemies();
     public boolean isFinished();
+    public void dispose();
 }

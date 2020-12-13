@@ -1,8 +1,9 @@
 package com.hroo078.gxattack.Game.Screens;
 
 import android.content.res.Resources;
-import android.util.Log;
 
+import android.util.Log;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
@@ -20,6 +21,7 @@ import com.hroo078.gxattack.Game.Levels.Level1;
 import com.hroo078.gxattack.Game.Objects.Bullet;
 import com.hroo078.gxattack.Game.Objects.Enemies.Enemy;
 import com.hroo078.gxattack.Game.Objects.Player;
+import com.hroo078.gxattack.Game.UI.ExplosionAnimation;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
@@ -32,6 +34,8 @@ public class GameScreen extends AbstractScreen {
     private Texture lifeImage;
     private Label scoreLabel;
     private int backgroundOffset;
+    private Texture explosionTexture;
+    private LinkedList<ExplosionAnimation> explosionList;
 
     private Stage stage;
     private Player player;
@@ -44,15 +48,16 @@ public class GameScreen extends AbstractScreen {
 
     public GameScreen() {
         GallaxyAttackGame.soundManager.playGameMusic();
+        explosionTexture = new Texture("explosion.png");
+        explosionList = new LinkedList<>();
 
         player = new Player(80,70);
         player.setPosition(20,0);
         player.setTexture("ship1.png", false);
-        player.setSpeed(3.15f);
+        player.setSpeed(4.15f);
         score = 0;
         level = 1;
         finishedLevel = true;
-
         buildStage();
     }
 
@@ -102,6 +107,7 @@ public class GameScreen extends AbstractScreen {
 
     public void gameLoop(float dt) {
         detectCollisions();
+        updateExplosions(dt);
         player.update(dt);
         if(finishedLevel) {
             updateLevel();
@@ -109,6 +115,7 @@ public class GameScreen extends AbstractScreen {
         currentLevel.update(dt);
         finishedLevel = currentLevel.isFinished();
     }
+
 
     public void updateLevel() {
 
@@ -124,6 +131,7 @@ public class GameScreen extends AbstractScreen {
     private void detectCollisions() {
         ListIterator<Bullet> bulletListIterator = player.bullets.listIterator();
 
+        // player bullets
         while (bulletListIterator.hasNext()){
             Bullet bullet = bulletListIterator.next();
             ListIterator<Enemy> enemyShipListIterator = currentLevel.enemyList.listIterator();
@@ -132,13 +140,47 @@ public class GameScreen extends AbstractScreen {
 
                 if(enemy.getBoundingRectangle().overlaps(bullet.getBoundingRectangle())){
                     score += 5;
+                    explosionList.add(
+                            new ExplosionAnimation(explosionTexture, new Rectangle(enemy.getBoundingRectangle()), 0.7f));
+                    GallaxyAttackGame.soundManager.playExplosionSound();
                     bulletListIterator.remove();
+                    enemyShipListIterator.remove();
                     break;
                 }
             }
         }
 
+        //enemy bullets
+        ListIterator<Enemy> enemyShipListIterator = currentLevel.enemyList.listIterator();
+        while (enemyShipListIterator.hasNext()){
+            Enemy enemy = enemyShipListIterator.next();
+            ListIterator<Bullet> enemyBulletsIterator = enemy.bullets.listIterator();
+            while (enemyBulletsIterator.hasNext()) {
+                Bullet enemyBullet = enemyBulletsIterator.next();
+                if(player.getBoundingRectangle().overlaps(enemyBullet.getBoundingRectangle())){
+                    player.lives -= 1;
+                    enemyBulletsIterator.remove();
+                    break;
+                }
+            }
+        }
+
+
     }
+
+    private void updateExplosions(float dt) {
+        ListIterator<ExplosionAnimation> explosionListIterator = explosionList.listIterator();
+        while (explosionListIterator.hasNext()) {
+            ExplosionAnimation explosion = explosionListIterator.next();
+            explosion.update(dt);
+            if (explosion.isFinished()) {
+                explosionListIterator.remove();
+            } else {
+                explosion.draw(batch);
+            }
+        }
+    }
+
     @Override
     public void buildStage() {
         stage = new Stage();
@@ -188,6 +230,7 @@ public class GameScreen extends AbstractScreen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
+        currentLevel.dispose();
     }
 }

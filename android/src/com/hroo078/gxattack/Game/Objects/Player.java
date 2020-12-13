@@ -88,11 +88,10 @@ public class Player extends GameObject {
         if(canShoot()) {
             Bullet bull = new Bullet(10,10, Type.PLAYER);
             bull.setPosition(getPosX() + getWidth() / 2, getHeight());
-            Log.i("BULLS", "PosX: " +getPosX() + " W:" + getWidth());
+
             bullets.add(bull);
             GallaxyAttackGame.soundManager.playLaserSound();
             timeSinceLastShot = 0;
-            Log.i("BULLS", "bullets: " + bullets.size());
         }
     }
 

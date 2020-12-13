@@ -15,7 +15,7 @@ public class Bullet extends GameObject{
     public Bullet(float width, float height, Type type) {
         super(width, height);
         if(type == Type.ENEMY) {
-            setTexture("laserBlue16.png", true);
+            setTexture("laserRed16.png", true);
         } else {
             setTexture("laserBlue16.png", true);
         }
@@ -32,7 +32,12 @@ public class Bullet extends GameObject{
 
 
     public void update(float dt) {
-        setPosY(getPosY() + 10);
+        if(type == Type.PLAYER) {
+            setPosY(getPosY() + 10);
+        } else {
+            setPosY(getPosY() - 10);
+        }
+
         draw(batch);
     }
 

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.hroo078.gxattack.Game.Interfaces.Direction;
 import com.hroo078.gxattack.Game.Interfaces.ILevel;
 import com.hroo078.gxattack.Game.Objects.Bullet;
 import com.hroo078.gxattack.Game.Objects.Enemies.Enemy;
@@ -18,9 +19,11 @@ import java.util.ListIterator;
 public class Level1 implements Screen, ILevel {
 
     private boolean isFinished;
+    private  Direction enemyDirection;
 
     public Level1() {
         isFinished = false;
+        enemyDirection = Direction.RIGHT;
     }
     @Override
     public void show() {
@@ -35,9 +38,9 @@ public class Level1 implements Screen, ILevel {
     @Override
     public void createEnemies() {
 
-        for (int row = 0; row <= 4; row++) {
-                Enemy e = new UFOenemy(50,50);
-                e.setPosition(60*row, Gdx.graphics.getHeight()/2 - e.getHeight()*3 );
+        for (int row = 0; row <= 5; row++) {
+                Enemy e = new UFOenemy(80,70);
+                e.setPosition(100*row, Gdx.graphics.getHeight() - e.getHeight()*4 );
                 enemyList.add(e);
         }
     }
@@ -46,8 +49,25 @@ public class Level1 implements Screen, ILevel {
     public void updateEnemies(float dt) {
         ListIterator<Enemy> enemyShipListIterator = enemyList.listIterator();
         while (enemyShipListIterator.hasNext()) {
-            Enemy enemyShip = enemyShipListIterator.next();
-            enemyShip.update(dt);
+            Enemy enemy = enemyShipListIterator.next();
+            checkDirection(enemy);
+
+            if(enemyDirection == Direction.RIGHT) {
+                enemy.setPosX(enemy.getPosX() + dt*75);
+            }
+            if(enemyDirection == Direction.LEFT) {
+                enemy.setPosX(enemy.getPosX() - dt*75);
+            }
+
+            enemy.update(dt);
+        }
+    }
+
+    public void checkDirection(Enemy enemy) {
+        if(enemy.getPosX() >= Gdx.graphics.getWidth() - enemy.getWidth()) {
+            enemyDirection = Direction.LEFT;
+        } else if(enemy.getPosX() <= 0){
+            enemyDirection = Direction.RIGHT;
         }
     }
 
@@ -88,6 +108,6 @@ public class Level1 implements Screen, ILevel {
 
     @Override
     public void dispose() {
-
+        enemyList.clear();
     }
 }
