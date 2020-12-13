@@ -20,6 +20,7 @@ public class AndroidLauncher extends AndroidApplication {
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 
 		AndroidLauncher.context = getApplicationContext();
+
 		// create new database
 		DatabaseHelper.getInstance(AndroidLauncher.context).getWritableDatabase();
 

@@ -2,6 +2,7 @@ package com.hroo078.gxattack.Game.Interfaces;
 
 import com.hroo078.gxattack.Game.Screens.AboutScreen;
 import com.hroo078.gxattack.Game.Screens.AbstractScreen;
+import com.hroo078.gxattack.Game.Screens.EndScreen;
 import com.hroo078.gxattack.Game.Screens.GameScreen;
 import com.hroo078.gxattack.Game.Screens.MenuScreen;
 import com.hroo078.gxattack.Game.Screens.ScoreScreen;
@@ -20,6 +21,11 @@ public enum ScreenEnum {
     },
     SCORE {
       public AbstractScreen getScreen() {return new ScoreScreen(); }
+    },
+    END {
+        public AbstractScreen getScreen() {
+            return new EndScreen();
+        }
     },
     ABOUT {
         public AbstractScreen getScreen() {

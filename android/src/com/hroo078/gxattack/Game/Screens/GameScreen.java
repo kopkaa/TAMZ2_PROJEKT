@@ -230,6 +230,7 @@ public class GameScreen extends AbstractScreen {
 
     @Override
     public void dispose() {
+        GallaxyAttackGame.soundManager.stopGameMusic();
         stage.dispose();
         currentLevel.dispose();
     }

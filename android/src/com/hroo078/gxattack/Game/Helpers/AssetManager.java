@@ -20,6 +20,7 @@ public class AssetManager {
     private final String laserSoundFile = "sounds/sfx_laser1.ogg";
     private final String gameMusicFile = "music/soundtrack.mp3";
     private final String menuMusicFile = "music/menu_music.mp3";
+    private final String gameOverMusicFile = "sounds/gameOver.mp3";
 
 
 
@@ -28,6 +29,7 @@ public class AssetManager {
         manager.load(gameMusicFile, Music.class);
         manager.load(laserSoundFile, Music.class);
         manager.load(explosionSoundFile, Music.class);
+        manager.load(gameOverMusicFile, Music.class);
     }
 
     public void initSounds() {
@@ -35,6 +37,7 @@ public class AssetManager {
         gameMusic = manager.get("music/soundtrack.mp3");
         laserSound = manager.get("sounds/sfx_laser1.ogg");
         explosionSound = manager.get("sounds/explode1.ogg");
+        gameOverSound = manager.get("sounds/gameOver.mp3");
     }
 
     public void dispose() {

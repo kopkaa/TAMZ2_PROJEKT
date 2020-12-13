@@ -17,7 +17,6 @@ import java.util.ListIterator;
 public class Player extends GameObject {
 
     public int lives;
-    public boolean isAlive;
     public List<Bullet> bullets = new ArrayList<Bullet>();
     private final float timeBetweenShots = 0.5f;
     private float timeSinceLastShot = 0;
@@ -26,7 +25,6 @@ public class Player extends GameObject {
     public Player(float width, float height) {
         super(width, height);
         lives = 3;
-        isAlive = true;
     }
 
     private void draw() {
@@ -38,6 +36,9 @@ public class Player extends GameObject {
 
     @Override
     public void update(float dt) {
+        if(lives <= 0) {
+            GallaxyAttackGame.screenManager.showScreen(ScreenEnum.END);
+        }
         draw();
         timeSinceLastShot += dt;
         checkInput();

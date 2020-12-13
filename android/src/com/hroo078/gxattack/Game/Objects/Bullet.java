@@ -6,11 +6,9 @@ import com.hroo078.gxattack.Game.Interfaces.Type;
 
 public class Bullet extends GameObject{
 
-    private Direction direction;
-    private float speed;
-    private boolean status;
+
     private Type type;
-    private int damage = 1;
+
 
     public Bullet(float width, float height, Type type) {
         super(width, height);
@@ -20,7 +18,6 @@ public class Bullet extends GameObject{
             setTexture("laserBlue16.png", true);
         }
         this.type = type;
-        this.status = false;
     }
 
     private void draw(SpriteBatch batch) {
@@ -37,7 +34,6 @@ public class Bullet extends GameObject{
         } else {
             setPosY(getPosY() - 10);
         }
-
         draw(batch);
     }
 

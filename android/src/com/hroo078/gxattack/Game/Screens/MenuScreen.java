@@ -89,7 +89,6 @@ public class MenuScreen extends AbstractScreen {
         });
 
         menuButtons.add(newGame);
-        menuButtons.add(new TextButton("SETTINGS", GallaxyAttackGame.gameSkin, "default"));
         menuButtons.add(score);
         menuButtons.add(about);
 

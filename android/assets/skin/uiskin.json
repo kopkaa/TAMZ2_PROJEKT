@@ -30,6 +30,10 @@ com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 		downFontColor: { a: 1, b: 0.1552, g: 0.8552, r: 0.6897 },
 		disabledFontColor: { a: 1, b: 0.8, g: 0.8, r: 0.8 },
 	},
+	score: {
+		font: commodore-64,
+		fontColor: { a: 1, b: 0, g: 1, r: 1 }
+	},
 	toggle: {
 		font: commodore-64,
 		fontColor: { a: 1, b: 1, g: 0.64705884, r: 0.64705884 },
@@ -106,6 +110,10 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	optional: {
 		font: commodore-64,
 		fontColor: { a: 1, b: 1, g: 1, r: 1 }
+	},
+	score: {
+		font: commodore-64,
+		fontColor: { a: 1, b: 0, g: 1, r: 1 }
 	},
 	default: {
 		font: commodore-64,

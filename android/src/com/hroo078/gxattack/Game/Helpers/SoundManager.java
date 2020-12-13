@@ -62,7 +62,6 @@ public class SoundManager {
     }
 
     public void playGameOverSound() {
-        assetManager.menuMusic.stop();
         if (soundEnabled) {
             assetManager.gameOverSound.stop();
             assetManager.gameOverSound.play();
